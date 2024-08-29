@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block title %}{{article.title}}{% endblock %}
+{%block description%}{{article.description}}{%endblock%}
+
+{% block styles %}{% static 'css/article.css' %}{% endblock %}
+
+  {% block content %}
+  <main class="main-content">
+    <article class="article">
+      <h1>{{article.title}}</h1>
+      {{article.content | safe}}
+    </article>
+
+    <aside class="aside">
+      <div class="read-too">
+        <h2>Czytaj też</h2>
+        <ul>
+          {%for i in read_too%}
+          <li><a href="{% url 'article' i.urlName %}">{{i.title}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+{% endblock %}

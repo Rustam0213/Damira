@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{% block title %}Damira{% endblock %}
+
+{%block styles%}{% static 'css/index.css' %}{%endblock%}
+
+{% block content %}
+
+<div class="intro">
+  <h1>Witamy na naszym blogu o psychologii i moralnych problemach!</h1>
+  <p>Naszym celem jest pomoc w zrozumieniu złożonych kwestii psychologicznych i moralnych, z którymi codziennie się spotykamy. Wierzymy, że każdy z nas ma moc, aby poprawić swoje życie i relacje, zyskując większe zrozumienie samego siebie i innych.</p>
+</div>
+
+<div class="row">
+  <div class="about card">
+    <div class="list">
+        <p><strong>Na tym blogu dowiesz się:</strong></p>
+        <ul>
+            <li>O problemach moralnych i jak je rozwiązać</li>
+            <li>Jak pokonać wątpliwości</li>
+            <li>Co robić, gdy nie wiesz, co powiedzieć</li>
+            <li>O rozwoju osobistym</li>
+            <li>Jak osiągnąć to, co chcesz</li>
+            <li>O tym, jak myślą ludzie</li>
+            <li>I jeszcze wiele innych tematów, które mogą Cię zainteresować</li>
+        </ul>
+    </div> 
+  </div>
+
+  <div class="latest-articles card">
+    <h2><strong>Ostatnie artykuły</strong></h2>
+    {%if articles%}
+    {%for article in articles%}
+      <div class="index_article">
+          <h3>{{article.title}}</h3>
+          <p>{{article.description}}</p>
+          <a href="{% url 'article' article.urlName%}" class="btn">Czytaj więcej</a>
+      </div>    
+    {%endfor%}
+    {%else%}
+     <p>Na razie nie ma artykułów dla ciebie :(</p>
+    {%endif%}
+
+  </div>  
+</div>
+
+<div class="row">
+  <div class="ask-question card">
+    <h2>Masz pytanie lub temat do omówienia?</h2>
+    <p>Jeśli masz pytania dotyczące psychologii lub moralnych problemów, albo temat, który chciałbyś zobaczyć na naszym blogu, daj nam znać!</p>
+    <a href="{%url 'contact'%}" class="btn">Zadaj pytanie</a>
+  </div>  
+</div>
+
+
+
+{% endblock %}

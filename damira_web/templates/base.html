@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" href="{%static 'img/d.png'%}">
+  <link rel="stylesheet" href="{% static 'css/article.css' %}">
+  <link rel="stylesheet" href="{%block styles%}{%endblock%}">
+  <meta name="description" content = "{%block description%}{%endblock%}">
+</head>
+<body>
+
+  <header>
+    <img class="logo" src="{% static 'img/image.png' %}" alt="Damira" draggable="false">
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="sidebar" id="sidebar">
+      <a class="closebtn" id="closebtn">&times;</a>
+      <a href="{% url 'index' %}">Główna</a>
+      <a href="{% url 'articles' %}">Artykuły</a>
+      <a href="{%url 'contact'%}" target="_self">Znalazłeś problem?</a>
+      <a href="{% url 'cookies' %}">Polityka cookies</a>
+    </div>
+  </header>
+
+  {% block content %}
+  {% endblock %}
+    <!-- Cookie Consent Modal -->
+    <div id="cookie-consent" class="cookie-consent">
+      <div class="cookie-consent-content">
+          <h2>Używamy plików cookie</h2>
+          <p>Nasza strona internetowa używa plików cookie, aby poprawić Twoje doświadczenia użytkownika. Kontynuując korzystanie z naszej witryny, zgadzasz się na używanie plików cookie.</p>
+          <button id="reject-cookies" class="btn">Odrzuć</button>
+          <button id="accept-cookies" class="btn">Akceptuj</button>
+      </div>
+    </div>
+
+    
+  <footer>
+    <div class="footer-links">
+      <a href="{%url 'cookies'%}">Polityka cookies</a>
+      <a href="{%url 'contact'%}">Znalazłeś problem?</a>
+      <a href="{% url 'index' %}">Strona główna</a>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

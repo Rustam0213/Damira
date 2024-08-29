@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Damira Artykuły{% endblock %}
+
+{%block description%}Artykuły o psychologii na Damira.pl{%endblock%}
+
+{% block styles %}
+{% static 'css/articles.css' %}
+{% endblock %}
+
+{% block content %}
+
+<form method="GET" action="{% url 'articles' %}">
+  <input type="text" name="szukaj" placeholder="Wyszukaj artykuły" value="{{ request.GET.q }}">
+  <button type="submit">Szukaj</button>
+</form>
+
+<div class="articles">
+  {% if page_obj %}
+    {% for article in page_obj %}
+      <div class="article">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <a href="{% url 'article' article.urlName %}" class="btn">Czytaj</a>
+      </div>  
+    {% endfor %}
+  {% else %}
+    <h1 style="margin: 200px 0 200px 0; text-align: center;">TU JEST PUSTO</h1>
+  {% endif %}
+</div>
+
+<div class="pag-row">
+  <div class="pagination">
+
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn page-button">‹</a>
+    {% else %}
+      <span class="btn page-button disabled">‹</span>
+    {% endif %}
+
+    {% for num in pages_range %}
+      {% if page_obj.number == num %}
+        <span class="btn page-button current">{{ num }}</span>
+      {% else %}
+        <a href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn page-button">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn page-button">›</a>
+    {% else %}
+      <span class="btn page-button disabled">›</span>
+    {% endif %}
+
+  </div>
+</div>
+
+  
+      <!-- <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span>
+      <span class="btn page-button current">1</span> -->
+
+
+
+{% endblock %}
