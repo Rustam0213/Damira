@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+
+.articles{
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.article{
+  padding: 10px 5px 20px 10px;
+  margin: 10px 10px 10px 10px;
+  box-shadow: 0 0 10px rgb(107, 107, 107);
+}
+
+.btn{
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgb(95, 127, 255);
+  transition: 0.2s ease;
+}
+
+.btn:hover{
+  background-color: rgb(37, 168, 255);
+}
+
+form{
+  width: 400px;
+}
+
+form input{
+  font-family: Nunito Sans, sans-serif;
+  border-radius: 10px;
+  position: relative;
+  padding: 5px;
+  margin: 10px;
+  font-size: 20px;
+  width: 300px;
+  border: 1px solid #25a8ff;
+  transition: 0.3s all;
+}
+
+form{
+  border-radius: 0px 0px 10px 0px;
+  background-color: #d2d2d2ee;
+}
+
+form button{
+  font-family: Nunito Sans, sans-serif;
+  border-radius: 5px;
+  background-color: #25a8ff;
+  padding: 10px 5px 10px 5px;
+  border: 1px solid rgb(0, 50, 142);
+  box-shadow: inset 0 0 3px black;
+  transition: 0.2s ease;
+}
+
+form button:active {
+  background-color: #1383ce;
+  transform: scale(0.97);
+}
+
+.pag-row{
+  width: 98%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.pagination {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.page-button{
+  margin: 15px 0 15px 0;
+  padding: 5px 8px 5px 8px;
+}
+
+.page-button.current {
+  font-weight: bold;
+  background-color: #005a8fee;
+  color: #ffffff;
+  cursor: default;
+}
+
+.page-button:disabled {
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px){
+  .article{
+    width: 80%;
+  }
+
+  form{
+    width: 100%;
+  }
+  form input{
+    width: 70%;
+  }
+}

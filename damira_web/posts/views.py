@@ -6,17 +6,13 @@ from django.db.models import Q
 
 def index(request):
     articles = Article.objects.all().order_by('-created_at')[:2]
-    return render(request, 'index.html', {'articles' : articles})
+    random_articles = Article.objects.all().order_by('?')[:8]
+    return render(request, 'index.html', {'articles' : articles, 'random_articles': random_articles})
 
 def article(request, urlName):
     read_too = Article.objects.all().order_by('-created_at')[:4]
     article = get_object_or_404(Article, urlName=urlName)
     return render(request, 'article.html', {'article': article, 'read_too': read_too})
-
-
-from django.core.paginator import Paginator
-from django.db.models import Q
-from django.shortcuts import render
 
 def articles(request):
     query = request.GET.get('szukaj')
@@ -27,15 +23,13 @@ def articles(request):
     else:
         articles_list = Article.objects.all().order_by("-created_at")
     
-    paginator = Paginator(articles_list, 7)  # Показываем по 7 статей на странице
+    paginator = Paginator(articles_list, 7)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
 
-    # Определяем диапазон для отображения страниц
     current_page = page_obj.number
     total_pages = paginator.num_pages
 
-    # Определяем начальную и конечную страницу для отображения
     if total_pages <= 10:
         start_page = 1
         end_page = total_pages
