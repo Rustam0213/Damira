@@ -2,3 +2,5 @@ local_settings.py
 prod_settings.py
 
 venv/
+
+posts/_pycache_/

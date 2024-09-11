@@ -12,6 +12,7 @@ def index(request):
 def article(request, urlName):
     read_too = Article.objects.all().order_by('-created_at')[:4]
     article = get_object_or_404(Article, urlName=urlName)
+    
     return render(request, 'article.html', {'article': article, 'read_too': read_too})
 
 def articles(request):
@@ -23,6 +24,7 @@ def articles(request):
     else:
         articles_list = Article.objects.all().order_by("-created_at")
     
+    paginator = Paginator(articles_list, 7)
     paginator = Paginator(articles_list, 7)
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
