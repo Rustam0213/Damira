@@ -48,11 +48,17 @@ body{
 
 ul li{
   border-radius: 10px;
-  padding: 7px;
+  padding: 10px;
   margin: 5px;
   background-color: #ebebeb;
   font-size: 23px;
   transition: 0.15s all;
+  text-decoration: double;
+}
+
+ul a{
+  text-decoration: none;
+  color: black;
 }
 
 ul li:hover{

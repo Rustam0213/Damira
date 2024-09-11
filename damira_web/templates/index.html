@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {%load static%}
 
-{% block title %}Damira Blog{% endblock %}
+{% block title %}Damira.pl Blog o psychologii{% endblock %}
 
 {%block description%}Tu znajdziesz odpowiedzi na swoje pytania{%endblock%}
 
@@ -19,13 +19,9 @@
     <div class="list">
         <p><strong>Na tym blogu dowiesz się:</strong></p>
         <ul>
-            <li>O problemach moralnych i jak je rozwiązać</li>
-            <li>Jak pokonać wątpliwości</li>
-            <li>Co robić, gdy nie wiesz, co powiedzieć</li>
-            <li>O rozwoju osobistym</li>
-            <li>Jak osiągnąć to, co chcesz</li>
-            <li>O tym, jak myślą ludzie</li>
-            <li>I jeszcze wiele innych tematów, które mogą Cię zainteresować</li>
+          {%for random_article in random_articles%}
+            <a href="{%url 'article' random_article.urlName%}" ><li>{{random_article.title}}</li></a>          
+          {%endfor%}
         </ul>
     </div> 
   </div>
